@@ -1,10 +1,9 @@
 import { Router } from "express"
+import { createOrder } from "../controllers/payment.controller.js"
 
 const router = Router()
 
-router.get('/create-order', (req, res) => {
-    res.send('Creating order')
-})
+router.get('/create-order', createOrder)
 
 router.get('/success', (req, res) => {
     res.send('Payment success')
