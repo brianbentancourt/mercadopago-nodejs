@@ -20,7 +20,7 @@ export const createOrder = async (req, res) => {
             failure: `${HOST}/failure`,
             pending: `${HOST}/pending`
         },
-        notification_url: 'http://localhost:3000/webhook'
+        notification_url: '[https ngrok url]/webhook'
     })
 
     console.log(result)
