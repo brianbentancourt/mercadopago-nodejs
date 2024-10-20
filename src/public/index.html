@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercadopago example</title>
+    <style>
+        .button {
+            background-color: #04AA6D;
+            /* Green */
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #04AA6D;
+        }
+
+        .button1:hover {
+            background-color: #04AA6D;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="checkout" class="button button1">Pay</button>
+
+    <script>
+        const checkout = document.getElementById('checkout');
+        checkout.addEventListener('click', async () => {
+            const response = await fetch('/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    items: [
+                        {
+                            title: 'Product 1',
+                            quantity: 1,
+                            currency_id: 'ARS',
+                            unit_price: 100
+                        }
+                    ]
+                })
+            });
+
+            const data = await response.json();
+            console.log(data);
+            window.open(data.init_point, '_blank');
+        });
+    </script>
+</body>
+
+</html>
